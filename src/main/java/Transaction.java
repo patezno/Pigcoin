@@ -2,16 +2,20 @@ import java.security.PublicKey;
 
 public class Transaction {
 
+    // Atributos
+
     private String hash = null;
     private String prevHash = null;
     private PublicKey pKeySender = null;
     private PublicKey pKeyReceiver = null;
-    private int pigcoins = 0;
+    private double pigcoins = 0d;
     private String message = null;
+
+    // Constructores
 
     public Transaction() {}
 
-    public Transaction(String hash, String prevHash, PublicKey sender, PublicKey receiver, int pigcoins, String message) {
+    public Transaction(String hash, String prevHash, PublicKey sender, PublicKey receiver, double pigcoins, String message) {
         this.hash = hash;
         this.prevHash = prevHash;
         this.pKeySender = sender;
@@ -19,6 +23,8 @@ public class Transaction {
         this.pigcoins = pigcoins;
         this.message = message;
     }
+
+    // Metodos
 
     public String getHash() {
         return hash;
@@ -36,7 +42,7 @@ public class Transaction {
         return pKeyReceiver;
     }
 
-    public int getPigcoins() {
+    public double getPigcoins() {
         return pigcoins;
     }
 
