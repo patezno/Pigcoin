@@ -7,9 +7,9 @@ public class Wallet {
 
     private PublicKey pKey = null;
     private PrivateKey sKey = null;
-    private String total_input = "";
-    private String total_output = "";
-    private String balance = "";
+    private String total_input = null;
+    private String total_output = null;
+    private String balance = null;
 
     // Constructor
 
