@@ -5,7 +5,7 @@ public class Wallet {
 
     // Atributos
 
-    private PublicKey address = null;
+    private PublicKey pKey = null;
     private PrivateKey sKey = null;
     private int total_input = 0;
     private int total_output = 0;
@@ -19,10 +19,16 @@ public class Wallet {
 
 
     public void setAddress(PublicKey aPublic) {
-        this.address = aPublic;
+        this.pKey = aPublic;
     }
 
+    // Metodos
+
     public PublicKey getAddress() {
-        return this.address;
+        return this.pKey;
+    }
+
+    public void generateKeyPair() {
+        setAddress(GenSig.generateKeyPair().getPublic());
     }
 }
