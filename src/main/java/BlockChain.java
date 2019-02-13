@@ -19,7 +19,12 @@ public class BlockChain {
     public void summarize() {
 
         for (Transaction transaction : this.getBlockChain()) {
-            System.out.println(transaction.toString());
+            System.out.println(transaction);
         }
     }
+
+    public void summarize(int position) {
+        System.out.println(getBlockChain().get(position).toString());
+    }
+
 }
