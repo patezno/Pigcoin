@@ -7,11 +7,14 @@ public class Wallet {
 
     private PublicKey pKey = null;
     private PrivateKey sKey = null;
-    private int total_input = 0;
-    private int total_output = 0;
-    private int balance = 0;
+    private String total_input = "";
+    private String total_output = "";
+    private String balance = "";
 
     // Constructor
+
+    public Wallet() {
+    }
 
     public void setSK(PrivateKey sKey) {
         this.sKey = sKey;
@@ -28,7 +31,33 @@ public class Wallet {
         return this.pKey;
     }
 
+    public String getTotalInput() {
+        return this.total_input;
+    }
+
+    public String getTotalOutput() {
+        return this.total_output;
+    }
+
+    private String getBalance() {
+        return this.balance;
+    }
+
+    public PrivateKey getSKey() {
+        return sKey;
+    }
+
     public void generateKeyPair() {
         setAddress(GenSig.generateKeyPair().getPublic());
+        setSK(GenSig.generateKeyPair().getPrivate());
+    }
+
+    @Override
+    public String toString() {
+        return "\n" + "Wallet = " + getAddress().hashCode() + "\n" +
+                "Total input = " + getTotalInput() + "\n" +
+                "Total output = " + getTotalOutput() + "\n" +
+                "Balance = " + getBalance() + "\n";
     }
 }
+

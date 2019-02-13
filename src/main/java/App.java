@@ -4,6 +4,7 @@ import java.util.Map;
 public class App {
 
     public static void main(String[] args) {
+
         /**
          * Crea una wallet
          * Genera las claves privada y publica de la wallet
