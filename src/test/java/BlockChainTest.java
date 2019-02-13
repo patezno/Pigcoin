@@ -21,4 +21,6 @@ public class BlockChainTest {
     public void isBlockChainCreatedTest() {
         assertNotNull(blockChain.getBlockChain());
     }
+
+
 }

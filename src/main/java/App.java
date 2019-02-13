@@ -73,5 +73,8 @@ public class App {
         bChain.addOrigin(trx);
         trx = new Transaction("hash_3", "hash_1", wallet_1.getAddress(), wallet_2.getAddress(), 20, "a flying pig!");
         bChain.addOrigin(trx);
+
+        // Visualiza el blockchain
+        bChain.summarize();
     }
 }

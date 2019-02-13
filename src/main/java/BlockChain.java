@@ -14,4 +14,12 @@ public class BlockChain {
     public List<Transaction> getBlockChain() {
         return this.blockchain;
     }
+
+
+    public void summarize() {
+
+        for (Transaction transaction : this.getBlockChain()) {
+            System.out.println(transaction.toString());
+        }
+    }
 }
