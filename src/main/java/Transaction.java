@@ -24,7 +24,7 @@ public class Transaction {
         this.message = message;
     }
 
-    // Metodos
+    // Getters
 
     public String getHash() {
         return hash;
@@ -49,6 +49,8 @@ public class Transaction {
     public String getMessage() {
         return message;
     }
+
+    // Metodos
 
     @Override
     public String toString() {

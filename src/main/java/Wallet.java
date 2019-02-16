@@ -18,6 +18,8 @@ public class Wallet {
     public Wallet() {
     }
 
+    // Setters
+
     public void setSK(PrivateKey sKey) {
         this.sKey = sKey;
     }
@@ -35,7 +37,7 @@ public class Wallet {
         this.outputTransactions = outputTransactions;
     }
 
-    // Metodos
+    // Getters
 
     public PublicKey getAddress() {
         return this.pKey;
@@ -49,7 +51,7 @@ public class Wallet {
         return this.total_output;
     }
 
-    private double getBalance() {
+    public double getBalance() {
         return this.balance;
     }
 
@@ -64,6 +66,8 @@ public class Wallet {
     public Transaction getOutputTransactions() {
         return this.outputTransactions;
     }
+
+    // Metodos
 
     public void generateKeyPair() {
         setAddress(GenSig.generateKeyPair().getPublic());
@@ -87,7 +91,6 @@ public class Wallet {
             } else if (transaction.getPKeySender() == this.getAddress()) {
                 total_output += transaction.getPigcoins();
             }
-
         }
 
         balance += total_input - total_output;
@@ -101,9 +104,7 @@ public class Wallet {
             if (transaction.getPKeyReceiver() == this.getAddress()) {
                 setInputTransactions(transaction);
             }
-
         }
-
     }
 
     public void loadOutputTransactions(BlockChain bChain) {
@@ -113,9 +114,24 @@ public class Wallet {
             if (transaction.getPKeySender() == this.getAddress()) {
                 setOutputTransactions(transaction);
             }
-
         }
+    }
+
+    /*
+    public void sendCoins(PublicKey address, double coins, String message, BlockChain bChain) {
+
+        collectCoins(coins);
+        signTransaction(message);
+        bChain.processTransaction(pKey, address, coins, message, signedTransaction);
 
     }
+
+    public void collectCoins(double coins) {
+    }
+
+    public void signTransaction(String message) {
+    }
+    */
+
 }
 

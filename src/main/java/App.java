@@ -156,5 +156,28 @@ public class App {
         wallet_2.loadInputTransactions(bChain);
         wallet_2.loadOutputTransactions(bChain);
         System.out.println(wallet_2.toString());
+
+        /**
+         * Enviar pigcoins de la wallet_1 a la wallet_2
+         * Este es el flujo de trabajo que has de programar.
+         *
+         * wallet_1.sendCoins(wallet_2.getAddress(), pigcoins, message, bChain) {
+         *
+         *          collectCoins(pigcoins);
+         *          signTransaction(message);
+         *          bChain.processTransactions(pKey_sender, pKey_recipient, consumedCoins, message, signedTransaction);
+         *      };
+         *
+         * bChain.processTransactions(pKey_sender, pKey_recipient, consumedCoins, message, signedTransaction) {
+         *
+         *          isSignatureValid(public_Key, message, signedTransaction)
+         *          isConsumedCoinValid(consumedCoins);
+         *          createTransaction(pKey_sender, pKey_recipient, consumedCoins,message, signedTransaction);
+         *       }
+         *
+         * A continuacion se detalla la responsabilidad de cada metodo.
+         */
+
+        System.out.println("\n" + ">>>>>>>>>>>> Wallet_1 envia transaccion de pigcoins a wallet_2 >>>>>>>>>>>>" + "\n");
     }
 }
