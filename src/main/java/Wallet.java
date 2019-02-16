@@ -10,6 +10,8 @@ public class Wallet {
     private double total_input = 0d;
     private double total_output = 0d;
     private double balance = 0d;
+    private Transaction inputTransactions = null;
+    private Transaction outputTransactions = null;
 
     // Constructor
 
@@ -23,6 +25,14 @@ public class Wallet {
 
     public void setAddress(PublicKey aPublic) {
         this.pKey = aPublic;
+    }
+
+    public void setInputTransactions(Transaction inputTransactions) {
+        this.inputTransactions = inputTransactions;
+    }
+
+    public void setOutputTransactions(Transaction outputTransactions) {
+        this.outputTransactions = outputTransactions;
     }
 
     // Metodos
@@ -47,6 +57,14 @@ public class Wallet {
         return sKey;
     }
 
+    public Transaction getInputTransactions() {
+        return this.inputTransactions;
+    }
+
+    public Transaction getOutputTransactions() {
+        return this.outputTransactions;
+    }
+
     public void generateKeyPair() {
         setAddress(GenSig.generateKeyPair().getPublic());
         setSK(GenSig.generateKeyPair().getPrivate());
@@ -61,14 +79,43 @@ public class Wallet {
     }
 
     public void loadCoins(BlockChain bChain) {
+
         for (Transaction transaction : bChain.getBlockChain()) {
+
             if (transaction.getPKeyReceiver() == this.getAddress()) {
                 total_input += transaction.getPigcoins();
             } else if (transaction.getPKeySender() == this.getAddress()) {
                 total_output += transaction.getPigcoins();
             }
+
         }
+
         balance += total_input - total_output;
+
+    }
+
+    public void loadInputTransactions(BlockChain bChain) {
+
+        for (Transaction transaction : bChain.getBlockChain()) {
+
+            if (transaction.getPKeyReceiver() == this.getAddress()) {
+                setInputTransactions(transaction);
+            }
+
+        }
+
+    }
+
+    public void loadOutputTransactions(BlockChain bChain) {
+
+        for (Transaction transaction : bChain.getBlockChain()) {
+
+            if (transaction.getPKeySender() == this.getAddress()) {
+                setOutputTransactions(transaction);
+            }
+
+        }
+
     }
 }
 
