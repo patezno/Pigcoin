@@ -7,9 +7,9 @@ public class Wallet {
 
     private PublicKey pKey = null;
     private PrivateKey sKey = null;
-    private String total_input = null;
-    private String total_output = null;
-    private String balance = null;
+    private double total_input = 0d;
+    private double total_output = 0d;
+    private double balance = 0d;
 
     // Constructor
 
@@ -31,15 +31,15 @@ public class Wallet {
         return this.pKey;
     }
 
-    public String getTotalInput() {
+    public double getTotalInput() {
         return this.total_input;
     }
 
-    public String getTotalOutput() {
+    public double getTotalOutput() {
         return this.total_output;
     }
 
-    private String getBalance() {
+    private double getBalance() {
         return this.balance;
     }
 
@@ -58,6 +58,17 @@ public class Wallet {
                 "Total input = " + getTotalInput() + "\n" +
                 "Total output = " + getTotalOutput() + "\n" +
                 "Balance = " + getBalance() + "\n";
+    }
+
+    public void loadCoins(BlockChain bChain) {
+        for (Transaction transaction : bChain.getBlockChain()) {
+            if (transaction.getPKeyReceiver() == this.getAddress()) {
+                total_input += transaction.getPigcoins();
+            } else if (transaction.getPKeySender() == this.getAddress()) {
+                total_output += transaction.getPigcoins();
+            }
+        }
+        balance += total_input - total_output;
     }
 }
 
