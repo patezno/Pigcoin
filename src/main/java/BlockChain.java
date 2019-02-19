@@ -58,6 +58,34 @@ public class BlockChain {
         return GenSig.verify(pKey, message, signedTransaction);
     }
 
+    public List<Transaction> loadInputTransactions(PublicKey address) {
+
+        List<Transaction> inputTransactions = new ArrayList<>();
+
+        for (Transaction transaction : getBlockChain()) {
+            if (address.equals(transaction.getPKeyReceiver())) {
+                inputTransactions.add(transaction);
+            }
+        }
+
+        return inputTransactions;
+
+    }
+
+    public List<Transaction> loadOutputTransactions(PublicKey address) {
+
+        List<Transaction> outputTransactions = new ArrayList<>();
+
+        for (Transaction transaction : getBlockChain()) {
+            if (address.equals(transaction.getPKeySender())) {
+                outputTransactions.add(transaction);
+            }
+        }
+
+        return outputTransactions;
+
+    }
+
     /*
     public void processTransaction(PublicKey pKey_sender, PublicKey pKey_recipient, Map<String, Double> consumedCoins,
                                    String message, byte[] signedTransaction) {

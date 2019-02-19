@@ -56,7 +56,7 @@ public class BlockChainTest {
         assertEquals(30, pigcoins[0], 0);
         assertEquals(20, pigcoins[1], 0);
     }
-    /*
+
     @Test
     public void load_Input_Transactions_test() {
 
@@ -91,6 +91,7 @@ public class BlockChainTest {
         assertFalse(inputTransactions.contains(transaction));
     }
 
+    /*
     @Test
     public void is_consumed_coin_valid_test() {
 

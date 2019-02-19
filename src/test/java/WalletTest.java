@@ -76,7 +76,6 @@ public class WalletTest {
         assertTrue(bChain.isSignatureValid(wallet.getAddress(), "pig things!", signedMessage));
     }
 
-    /*
     @Test
     public void load_input_transactions_test() {
 
@@ -97,16 +96,17 @@ public class WalletTest {
 
         wallet_1.loadInputTransactions(bChain);
         assertTrue(wallet_1.getInputTransactions().size() == 1);
-        assertTrue(wallet_1.getInputTransactions().get(0).getPigCoins() == 20);
+        assertTrue(wallet_1.getInputTransactions().get(0).getPigcoins() == 20);
 
         wallet_2.loadInputTransactions(bChain);
         assertTrue(wallet_2.getInputTransactions().size() == 1);
-        assertTrue(wallet_2.getInputTransactions().get(0).getPigCoins() == 10);
+        assertTrue(wallet_2.getInputTransactions().get(0).getPigcoins() == 10);
 
         wallet_3.loadInputTransactions(bChain);
         assertTrue(wallet_3.getInputTransactions().size() == 0);
     }
 
+    /*
     @Test
     public void collect_coins_test() {
 

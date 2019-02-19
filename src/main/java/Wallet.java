@@ -1,6 +1,8 @@
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Wallet {
 
@@ -11,8 +13,8 @@ public class Wallet {
     private double total_input = 0d;
     private double total_output = 0d;
     private double balance = 0d;
-    private Transaction inputTransactions = null;
-    private Transaction outputTransactions = null;
+    private List<Transaction> inputTransactions = null;
+    private List<Transaction> outputTransactions = null;
 
     // Constructor
 
@@ -24,16 +26,15 @@ public class Wallet {
         this.sKey = sKey;
     }
 
-
     public void setAddress(PublicKey aPublic) {
         this.pKey = aPublic;
     }
 
-    public void setInputTransactions(Transaction inputTransactions) {
+    public void setInputTransactions(List<Transaction> inputTransactions) {
         this.inputTransactions = inputTransactions;
     }
 
-    public void setOutputTransactions(Transaction outputTransactions) {
+    public void setOutputTransactions(List<Transaction> outputTransactions) {
         this.outputTransactions = outputTransactions;
     }
 
@@ -71,11 +72,11 @@ public class Wallet {
         return sKey;
     }
 
-    public Transaction getInputTransactions() {
+    public List<Transaction> getInputTransactions() {
         return this.inputTransactions;
     }
 
-    public Transaction getOutputTransactions() {
+    public List<Transaction> getOutputTransactions() {
         return this.outputTransactions;
     }
 
@@ -88,15 +89,6 @@ public class Wallet {
         setAddress(pair.getPublic());
         setSK(pair.getPrivate());
 
-    }
-
-    @Override
-    public String toString() {
-
-        return "\n" + "Wallet = " + getAddress().hashCode() + "\n" +
-                "Total input = " + getTotalInput() + "\n" +
-                "Total output = " + getTotalOutput() + "\n" +
-                "Balance = " + getBalance() + "\n";
     }
 
     public void update_balance() {
@@ -117,27 +109,24 @@ public class Wallet {
     }
 
     public void loadInputTransactions(BlockChain bChain) {
-
-        for (Transaction transaction : bChain.getBlockChain()) {
-
-            if (transaction.getPKeyReceiver() == this.getAddress()) {
-                setInputTransactions(transaction);
-            }
-        }
+        setInputTransactions(bChain.loadInputTransactions(getAddress()));
     }
 
     public void loadOutputTransactions(BlockChain bChain) {
-
-        for (Transaction transaction : bChain.getBlockChain()) {
-
-            if (transaction.getPKeySender() == this.getAddress()) {
-                setOutputTransactions(transaction);
-            }
-        }
+        setOutputTransactions(bChain.loadOutputTransactions(getAddress()));
     }
 
     public byte[] signTransaction(String message) {
         return GenSig.sign(getSKey(), message);
+    }
+
+    @Override
+    public String toString() {
+
+        return "\n" + "Wallet = " + getAddress().hashCode() + "\n" +
+                "Total input = " + getTotalInput() + "\n" +
+                "Total output = " + getTotalOutput() + "\n" +
+                "Balance = " + getBalance() + "\n";
     }
 
     /*
