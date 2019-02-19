@@ -54,15 +54,16 @@ public class BlockChain {
         return pigcoins;
     }
 
+    public boolean isSignatureValid(PublicKey pKey, String message, byte[] signedTransaction) {
+        return GenSig.verify(pKey, message, signedTransaction);
+    }
+
     /*
     public void processTransaction(PublicKey pKey_sender, PublicKey pKey_recipient, Map<String, Double> consumedCoins,
                                    String message, byte[] signedTransaction) {
         isSignatureValid(pKey_sender, message, signedTransaction);
         isConsumedCoinValid(consumedCoins);
         createTransactions(pKey_sender, pKey_recipient, consumedCoins, message, signedTransaction);
-    }
-
-    public boolean isSignatureValid(PublicKey pKey_sender, String message, byte[] signedTransaction) {
     }
 
     public boolean isConsumedCoinValid(Map<String, Double> consumedCoins) {

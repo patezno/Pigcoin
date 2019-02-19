@@ -65,6 +65,17 @@ public class WalletTest {
         assertEquals(0, wallet_3.getBalance(), 0);
     }
 
+    @Test
+    public void signTransaction() {
+
+        Wallet wallet = new Wallet();
+        wallet.generateKeyPair();
+        byte[] signedMessage = wallet.signTransaction("pig things!");
+
+        BlockChain bChain = new BlockChain();
+        assertTrue(bChain.isSignatureValid(wallet.getAddress(), "pig things!", signedMessage));
+    }
+
     /*
     @Test
     public void load_input_transactions_test() {
@@ -158,17 +169,6 @@ public class WalletTest {
         coins = wallet.collectCoins(pigcoins);
         assertNull(coins);
         
-    }
-
-    @Test
-    public void signTransaction() {
-
-        Wallet wallet = new Wallet();
-        wallet.generateKeyPair();
-        byte[] signedMessage = wallet.signTransaction("pig things!");
-
-        BlockChain bChain = new BlockChain();
-        assertTrue(bChain.isSignatureValid(wallet.getAddress(), "pig things!", signedMessage));
     }
 
     @Test

@@ -1,3 +1,4 @@
+import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
@@ -81,12 +82,17 @@ public class Wallet {
     // Metodos
 
     public void generateKeyPair() {
-        setAddress(GenSig.generateKeyPair().getPublic());
-        setSK(GenSig.generateKeyPair().getPrivate());
+
+        KeyPair pair = GenSig.generateKeyPair();
+
+        setAddress(pair.getPublic());
+        setSK(pair.getPrivate());
+
     }
 
     @Override
     public String toString() {
+
         return "\n" + "Wallet = " + getAddress().hashCode() + "\n" +
                 "Total input = " + getTotalInput() + "\n" +
                 "Total output = " + getTotalOutput() + "\n" +
@@ -130,11 +136,11 @@ public class Wallet {
         }
     }
 
-    /*
-    public void signTransaction(String message) {
-        Transaction.setSignature(sKey);
+    public byte[] signTransaction(String message) {
+        return GenSig.sign(getSKey(), message);
     }
 
+    /*
     public void sendCoins(PublicKey address, double coins, String message, BlockChain bChain) {
 
         collectCoins(coins);

@@ -65,6 +65,7 @@ public class Transaction {
 
     @Override
     public String toString() {
+
         return "\n" + "Hash = " + getHash() + "\n" +
                 "Prev_hash = " + getPrevHash() + "\n" +
                 "pKey_sender = " + getPKeySender().hashCode() + "\n" +
