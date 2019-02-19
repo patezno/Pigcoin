@@ -10,6 +10,7 @@ public class Transaction {
     private PublicKey pKeyReceiver = null;
     private double pigcoins = 0d;
     private String message = null;
+    private byte[] signature = {};
 
     // Constructores
 
@@ -22,6 +23,12 @@ public class Transaction {
         this.pKeyReceiver = receiver;
         this.pigcoins = pigcoins;
         this.message = message;
+    }
+
+    // Setter
+
+    public void setSignature(byte[] signature) {
+        this.signature = signature;
     }
 
     // Getters

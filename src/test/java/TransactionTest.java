@@ -19,7 +19,8 @@ public class TransactionTest {
         wallet2 = new Wallet();
         wallet2.generateKeyPair();
 
-        transaction = new Transaction("hash_1", "2", wallet1.getAddress(), wallet2.getAddress(), 30, "a fucking pig");
+        transaction = new Transaction("hash_1", "2", wallet1.getAddress(), wallet2.getAddress(),
+                30, "a fucking pig");
 
     }
 
@@ -34,7 +35,7 @@ public class TransactionTest {
         assertEquals("2", transaction.getPrevHash());
         assertNotNull(transaction.getPKeySender());
         assertNotNull(transaction.getPKeyReceiver());
-        assertEquals(30, transaction.getPigcoins());
+        assertEquals(30, transaction.getPigcoins(), 0.0);
         assertEquals("a fucking pig", transaction.getMessage());
     }
 }

@@ -37,6 +37,18 @@ public class Wallet {
         this.outputTransactions = outputTransactions;
     }
 
+    public void setTotal_input(double total_input) {
+        this.total_input += total_input;
+    }
+
+    public void setTotal_output(double total_output) {
+        this.total_output += total_output;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     // Getters
 
     public PublicKey getAddress() {
@@ -82,18 +94,22 @@ public class Wallet {
                 "Balance = " + getBalance() + "\n";
     }
 
+    public void update_balance() {
+        setBalance(getTotalInput() - getTotalOutput());
+    }
+
     public void loadCoins(BlockChain bChain) {
 
         for (Transaction transaction : bChain.getBlockChain()) {
 
             if (transaction.getPKeyReceiver() == this.getAddress()) {
-                total_input += transaction.getPigcoins();
+                setTotal_input(transaction.getPigcoins());
             } else if (transaction.getPKeySender() == this.getAddress()) {
-                total_output += transaction.getPigcoins();
+                setTotal_output(transaction.getPigcoins());
             }
         }
 
-        balance += total_input - total_output;
+        update_balance();
 
     }
 
@@ -118,6 +134,10 @@ public class Wallet {
     }
 
     /*
+    public void signTransaction(String message) {
+        Transaction.setSignature(sKey);
+    }
+
     public void sendCoins(PublicKey address, double coins, String message, BlockChain bChain) {
 
         collectCoins(coins);
@@ -127,9 +147,6 @@ public class Wallet {
     }
 
     public void collectCoins(double coins) {
-    }
-
-    public void signTransaction(String message) {
     }
     */
 
