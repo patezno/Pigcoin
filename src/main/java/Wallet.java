@@ -15,8 +15,7 @@ public class Wallet {
 
     // Constructor
 
-    public Wallet() {
-    }
+    public Wallet() {}
 
     // Setters
 
@@ -100,14 +99,12 @@ public class Wallet {
 
     public void loadCoins(BlockChain bChain) {
 
-        for (Transaction transaction : bChain.getBlockChain()) {
+        double[] pigcoins = {0d, 0d};
 
-            if (transaction.getPKeyReceiver() == this.getAddress()) {
-                setTotal_input(transaction.getPigcoins());
-            } else if (transaction.getPKeySender() == this.getAddress()) {
-                setTotal_output(transaction.getPigcoins());
-            }
-        }
+        pigcoins = bChain.loadWallet(getAddress());
+
+        setTotal_input(pigcoins[0]);
+        setTotal_output(pigcoins[1]);
 
         update_balance();
 

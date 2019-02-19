@@ -1,7 +1,6 @@
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BlockChain {
 
@@ -34,6 +33,25 @@ public class BlockChain {
 
     public void summarize(int position) {
         System.out.println(getBlockChain().get(position).toString());
+    }
+
+    public double[] loadWallet(PublicKey address) {
+
+        double pigcoinsIn = 0d;
+        double pigcoinsOut = 0d;
+
+        for (Transaction transaction : getBlockChain()) {
+
+            if (address.equals(transaction.getPKeyReceiver())) {
+                pigcoinsIn += transaction.getPigcoins();
+            }
+            if (address.equals(transaction.getPKeySender())) {
+                pigcoinsOut += transaction.getPigcoins();
+            }
+        }
+
+        double[] pigcoins = { pigcoinsIn, pigcoinsOut };
+        return pigcoins;
     }
 
     /*

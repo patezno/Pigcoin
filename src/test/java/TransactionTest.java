@@ -1,41 +1,33 @@
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 public class TransactionTest {
 
-    private Wallet wallet1 = null;
-    private Wallet wallet2 = null;
-    private Transaction transaction = null;
-
-    @Before
-    public void init() {
-
-        wallet1 = new Wallet();
-        wallet1.generateKeyPair();
-
-        wallet2 = new Wallet();
-        wallet2.generateKeyPair();
-
-        transaction = new Transaction("hash_1", "2", wallet1.getAddress(), wallet2.getAddress(),
-                30, "a fucking pig");
-
-    }
-
+    /**
+     * Crear clase transaction
+     */
     @Test
-    public void createTransactionTest() {
-        assertNotNull(transaction);
+    public void constructor_test() {
+        
+        Transaction trx = new Transaction();
+        assertNotNull(trx);
+
+        Wallet wallet_1 = new Wallet();
+        wallet_1.generateKeyPair();
+        Wallet wallet_2 = new Wallet();
+        wallet_2.generateKeyPair();
+
+        trx = new Transaction("hash_1", "0", wallet_1.getAddress(), wallet_2.getAddress(), 20, "spam spam spam");
+        assertNotNull(trx);
+        assertTrue(trx.getPKeySender().equals(wallet_1.getAddress()));
+        assertTrue(trx.getPKeyReceiver().equals(wallet_2.getAddress()));
+        assertEquals(20, trx.getPigcoins(), 0);
+        assertTrue(trx.getMessage().equals("spam spam spam"));
     }
 
-    @Test
-    public void gettersTransactionTest() {
-        assertEquals("hash_1", transaction.getHash());
-        assertEquals("2", transaction.getPrevHash());
-        assertNotNull(transaction.getPKeySender());
-        assertNotNull(transaction.getPKeyReceiver());
-        assertEquals(30, transaction.getPigcoins(), 0.0);
-        assertEquals("a fucking pig", transaction.getMessage());
-    }
+
+
 }
