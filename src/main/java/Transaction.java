@@ -57,6 +57,10 @@ public class Transaction {
         return message;
     }
 
+    public byte[] getSignature() {
+        return signature;
+    }
+
     // Metodos
 
     @Override
