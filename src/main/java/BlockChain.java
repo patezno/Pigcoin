@@ -1,5 +1,5 @@
 import java.security.PublicKey;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +7,7 @@ public class BlockChain {
 
     // Atrinbutos
 
-    private List<Transaction> blockchain = new LinkedList<Transaction>();
+    private List<Transaction> blockchain = new ArrayList<Transaction>();
 
     // Constructor
 
