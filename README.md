@@ -1,4 +1,4 @@
-# pigcoin-java
+# Pigcoin
 Vamos a construir un prototipo de nuestra criptomoneda Pigcoin que permite gestionar mediante un blockchain la transferencia de monedas entre el alumnado y profesorado propietarios/as de wallets (o monederos).
 
 + La cadena de bloques o blockchain está compuesta por las transacciones que envían
